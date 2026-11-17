@@ -924,3 +924,11 @@ a {
 .callout-signup {
   transform: translateY(5rem);
 }
+
+/* Garante que elementos AOS nunca fiquem invisíveis caso o script atrase */
+@media screen and (max-width: 768px) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
