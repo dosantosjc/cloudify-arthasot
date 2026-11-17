@@ -22,14 +22,18 @@
     <link rel="icon" href="images/favicon-sm.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="images/favicon-md.png" />
     <link rel="apple-touch-icon" sizes="144x144" href="images/favicon-lg.png" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=JFXAmA5b1Zj-U72tKwpZeGMMFT-NHmUElaVJI8ZPkUJftAXXWz42rdQSCCkV8FsQjmOWsOCDcJsrZNk7oYPkE4WYz0ynx6iZXVlaeAVRaWLVEFk-0ya7DJcN0Hh0yG-5ACoTo1zRH88XepM5FLupcnbYW4vOJdK1IkaWGYZDD8wCCqPGpRg3O2-AVSpC5h7dQ7HsZiXPXjbuAG0p38dR5gpt_5_lVCle3FDKJwVi5-W2zbwJhLc-ne-xeuSUEIuYXr5ud_spdroFD1Ne-0CupcT9MRNVQ6S79-agKiyNJxzX6U-1Bq3-1XEN4BRYraZy" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jb250cmlidXRpb24udXNlcmNvbnRlbnQuZ29vZ2xlLmNvbS9kb3dubG9hZD9jPUNneGlZWEprWDNOMGIzSmhaMlVTVUJJTmNtVnpjRzl1YzJWZlpHRjBZUm9fQ2pBME1XUTJOelF5WTJJNVlXRTVObVJqTURBd05qWXdObUZtWWpsbU1HRmpNVEF4WldVNU5qQmhaRFl6WVdKbU16WVNDeElIRUs3UGg2V2VGaGdCJmZpbGVuYW1lPWluZGV4Lmh0bWwmb3BpPTEwMzEzNTA1MA"/></head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+    />
+  </head>
 
   <body>
     <header>
@@ -68,7 +72,12 @@
             type="image/png"
             srcset="images/banner.png 1x, images/banner@2x.png 2x"
           />
-          <img class="hero__image" src="images/banner.png" alt="" />
+          <img
+            class="hero__image"
+            src="images/banner.png"
+            alt=""
+            fetchpriority="high"
+          />
         </picture>
       </div>
     </section>
@@ -193,7 +202,13 @@
             type="image/jpg"
             srcset="images/easy.jpg 1x, images/easy@2x.jpg 2x"
           />
-          <img class="feature__image" src="images/easy@2x.jpg" alt="" />
+          <img
+            class="feature__image"
+            src="images/easy.jpg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
         </picture>
       </article>
       <article class="grid grid--1x2 feature">
@@ -218,7 +233,13 @@
             type="image/jpg"
             srcset="images/fast.jpg 1x, images/fast@2x.jpg 2x"
           />
-          <img class="feature__image" src="images/fast@2x.jpg" alt="" />
+          <img
+            class="feature__image"
+            src="images/fast.jpg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
         </picture>
       </article>
       <article class="grid grid--1x2 feature">
@@ -243,7 +264,13 @@
             type="image/jpg"
             srcset="images/wordpress.jpg 1x, images/wordpress@2x.jpg 2x"
           />
-          <img class="feature__image" src="images/wordpress@2x.jpg" alt="" />
+          <img
+            class="feature__image"
+            src="images/wordpress.jpg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
         </picture>
       </article>
       <article class="grid grid--1x2 feature">
@@ -268,7 +295,13 @@
             type="image/jpg"
             srcset="images/support.jpg 1x, images/support@2x.jpg 2x"
           />
-          <img class="feature__image" src="images/support@2x.jpg" alt="" />
+          <img
+            class="feature__image"
+            src="images/support.jpg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
         </picture>
       </article>
     </section>
@@ -286,7 +319,7 @@
             type="image/png"
             srcset="images/ipad.png 1x, images/ipad@2x.png 2x"
           />
-          <img src="images/ipad.png" alt="" />
+          <img src="images/ipad.png" alt="" loading="lazy" decoding="async" />
         </picture>
         <ul class="list" data-aos="fade-up">
           <li>
@@ -351,6 +384,8 @@
               <img
                 src="images/testimonial.jpg"
                 alt="Cliente satisfeito sorrindo"
+                loading="lazy"
+                decoding="async"
               />
               <span class="icon-container icon-container--accent">
                 <svg class="icon icon--white icon--small">
@@ -413,59 +448,4 @@
         </section>
         <section class="collapsible footer__section">
           <div class="collapsible__header">
-            <h2 class="collapsible__heading footer__heading">Empresa</h2>
-            <svg class="icon icon--white collapsible__chevron">
-              <use href="images/sprite.svg#chevron"></use>
-            </svg>
-          </div>
-          <div class="collapsible__content">
-            <ul class="list">
-              <li><a href="#">Sobre Nós</a></li>
-              <li><a href="#">Afiliados</a></li>
-              <li><a href="#">Blog</a></li>
-            </ul>
-          </div>
-        </section>
-        <section class="collapsible footer__section">
-          <div class="collapsible__header">
-            <h2 class="collapsible__heading footer__heading">Suporte</h2>
-            <svg class="icon icon--white collapsible__chevron">
-              <use href="images/sprite.svg#chevron"></use>
-            </svg>
-          </div>
-          <div class="collapsible__content">
-            <ul class="list">
-              <li><a href="#">Contato</a></li>
-              <li><a href="#">Base de Conhecimento</a></li>
-              <li><a href="#">Perguntas Frequentes</a></li>
-            </ul>
-          </div>
-        </section>
-        <section class="collapsible footer__section">
-          <div class="collapsible__header">
-            <h2 class="collapsible__heading footer__heading">Domínios</h2>
-            <svg class="icon icon--white collapsible__chevron">
-              <use href="images/sprite.svg#chevron"></use>
-            </svg>
-          </div>
-          <div class="collapsible__content">
-            <ul class="list">
-              <li><a href="#">Consultar Domínio</a></li>
-              <li><a href="#">Transferência de Domínio</a></li>
-              <li><a href="#">Domínio Grátis</a></li>
-            </ul>
-          </div>
-        </section>
-        <div class="footer__brand">
-          <img src="images/logo.svg" alt="" />
-          <p class="footer__copyright">Copyright 2026 Cloudify</p>
-        </div>
-      </div>
-    </footer>
-    <script src="js/main.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      AOS.init();
-    </script>
-  </body>
-</html>
+            <h2 class="collapsible__heading footer__
