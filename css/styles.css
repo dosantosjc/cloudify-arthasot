@@ -924,3 +924,93 @@ a {
 .callout-signup {
   transform: translateY(5rem);
 }
+/* Botão de login no menu */
+.nav__item--login > a {
+  display: inline-block;
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 40px;
+  padding: 0.5rem 2.5rem;
+}
+
+.nav__item--login > a:hover {
+  background: #ec3000;
+}
+
+@media screen and (min-width: 768px) {
+  .nav__list {
+    align-items: center;
+  }
+}
+
+/* Página de login */
+.login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background: #000;
+}
+
+.login__brand {
+  width: 180px;
+  margin-bottom: 3rem;
+}
+
+.login__card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  padding: 4rem 3rem;
+}
+
+.login__title {
+  margin-top: 0;
+  text-align: center;
+}
+
+.login__text {
+  text-align: center;
+}
+
+.login__label {
+  display: block;
+  color: var(--color-headings);
+  font-weight: 600;
+  margin: 2rem 0 0.5rem;
+}
+
+.login__card .input {
+  width: 100%;
+}
+
+.login__card .input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 132, 255, 0.3);
+}
+
+.login__card .btn {
+  margin-top: 3rem;
+}
+
+.login__card .btn:focus-visible,
+.login a:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.login__back {
+  margin-top: 3rem;
+  color: #d2d0db;
+}
+
+.login .login__card {
+  box-shadow: none;
+}
+
+.login .login__title {
+  font-size: 4rem;
+}
