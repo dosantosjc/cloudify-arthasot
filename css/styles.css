@@ -1044,3 +1044,17 @@ a.btn {
 a.btn--block {
   display: block;
 }
+
+/* Rolagem suave até as seções do menu */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* No celular, o menu fecha na hora para a rolagem parar no lugar certo */
+@media screen and (max-width: 767px) {
+  .nav .collapsible__content {
+    transition: none;
+  }
+}
