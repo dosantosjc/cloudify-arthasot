@@ -1014,3 +1014,33 @@ a {
 .login .login__title {
   font-size: 4rem;
 }
+
+/* Cadastro */
+.login__switch {
+  margin: 2rem 0 0;
+  text-align: center;
+}
+
+.login__switch a {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.hero__signup {
+  margin-top: 2rem;
+  color: #b9c3cf;
+}
+
+.hero__signup a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+a.btn {
+  display: inline-block;
+}
+
+a.btn--block {
+  display: block;
+}

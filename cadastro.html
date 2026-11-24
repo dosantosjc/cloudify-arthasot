@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Cadastre-se - Cloudify</title>
+    <link rel="icon" href="/images/favicon-sm.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+
+  <body>
+    <main class="login">
+      <a class="login__brand" href="https://www.arthasot.com.br/" aria-label="Cloudify"
+        ><img src="/images/logo.svg" alt=""
+      /></a>
+
+      <div class="card login__card">
+        <h1 class="login__title">Cadastre-se</h1>
+        <p class="login__text">Crie sua conta Cloudify.</p>
+
+        <!-- Demonstração: nenhuma conta é criada. Os campos não têm "name",
+             então nada é enviado. Ao enviar, o visitante vai para o site. -->
+        <form id="login-form" action="https://www.arthasot.com.br/" method="get">
+          <label class="login__label" for="nome">Nome</label>
+          <input class="input" id="nome" type="text" autocomplete="name" required />
+
+          <label class="login__label" for="email">E-mail</label>
+          <input class="input" id="email" type="email" autocomplete="email" required />
+
+          <label class="login__label" for="senha">Senha</label>
+          <input class="input" id="senha" type="password" autocomplete="new-password" minlength="8" required />
+
+          <label class="login__label" for="confirmar">Confirmar senha</label>
+          <input class="input" id="confirmar" type="password" autocomplete="new-password" required />
+
+          <button type="submit" class="btn btn--accent btn--block">Criar conta</button>
+        </form>
+
+        <p class="login__switch">Já tem uma conta? <a href="/login">Entrar</a></p>
+      </div>
+
+      <a class="login__back" href="https://www.arthasot.com.br/">&larr; Voltar para o site</a>
+    </main>
+    <script>
+      var senha = document.getElementById('senha');
+      var confirmar = document.getElementById('confirmar');
+      function conferirSenhas() {
+        confirmar.setCustomValidity(
+          confirmar.value === senha.value ? '' : 'As senhas não são iguais.'
+        );
+      }
+      senha.addEventListener('input', conferirSenhas);
+      confirmar.addEventListener('input', conferirSenhas);
+
+      document.getElementById('login-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        window.location.href = this.action;
+      });
+    </script>
+  </body>
+</html>
