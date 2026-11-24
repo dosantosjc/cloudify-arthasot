@@ -1058,3 +1058,48 @@ a.btn--block {
     transition: none;
   }
 }
+
+/* Resultado da busca de domínio */
+.domain-results {
+  max-width: 670px;
+  margin: -2rem auto 3rem;
+}
+
+.domain-results__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  padding: 1.2rem 1rem;
+  border-bottom: 1px solid #eee;
+  color: var(--color-headings);
+}
+
+.domain-results__item strong {
+  flex-grow: 1;
+  overflow-wrap: anywhere;
+}
+
+.domain-results__item--disponivel .domain-results__status {
+  color: #137a3a;
+  font-weight: 600;
+}
+
+.domain-results__item--registrado .domain-results__status {
+  color: #c62800;
+}
+
+.domain-results__item--restrito .domain-results__status,
+.domain-results__item--erro .domain-results__status {
+  color: var(--color-body-darker);
+}
+
+.domain-results__link {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.domain-results__note {
+  text-align: center;
+  font-size: 1.5rem;
+}

@@ -89,19 +89,22 @@
           Você tem um negócio? Usufrua da melhor plataforma do Brasil para empresas de médio e grande porte.
         </p>
       </header>
-      <div class="input-group">
+      <form class="input-group" id="busca-dominio">
         <input
           aria-label="Domínio"
           type="text"
+          name="nome"
+          required
           class="input"
           placeholder="Coloque seu domínio aqui..."
         />
-        <button class="btn btn--accent">
+        <button type="submit" class="btn btn--accent">
           <svg class="icon icon--white">
             <use href="images/sprite.svg#search"></use></svg
           >Buscar
         </button>
-      </div>
+      </form>
+      <div id="resultado-dominio" class="domain-results" aria-live="polite"></div>
       <ul class="list block-domain__prices">
         <li><span class="badge badge--secondary">.com</span></li>
         <li>.edu</li>
@@ -499,6 +502,7 @@
       </div>
     </footer>
     <script src="js/main.js"></script>
+    <script src="js/dominio.js"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
   AOS.init({
