@@ -1,0 +1,96 @@
+/* Painel do cliente */
+.dash { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); min-height: 100vh; background: #eef1f6; color: #4a4568; font-size: 1.4rem; }
+.dash h1, .dash h2, .dash h3, .dash p { margin: 0; line-height: 1.4; }
+.dash h1 { font-size: 2.2rem; margin-bottom: 1.5rem; }
+.dash h2 { font-size: 1.8rem; }
+.dash h3 { font-size: 1.4rem; margin: 2rem 0 0.5rem; }
+.dash button { font-family: inherit; cursor: pointer; }
+.dash button:focus-visible, .dash a:focus-visible { outline: 3px solid #00d9ff; outline-offset: 2px; }
+
+/* Menu lateral */
+.lateral { background: linear-gradient(180deg, #000 0%, #07101f 100%); color: #d2d0db; padding: 2rem 1.5rem; }
+.lateral__marca { display: block; width: 150px; margin: 0 auto 2rem; }
+.lateral__perfil { text-align: center; }
+.lateral__perfil .avatar { width: 80px; height: 80px; }
+.dash .lateral__perfil p { color: #fff; font-size: 1.8rem; margin-top: 1rem; overflow-wrap: anywhere; }
+#sair { border: 0; background: none; color: #ff5c33; font-size: 1.4rem; padding: 0.5rem 1rem; }
+.lateral__menu { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 2rem; }
+.lateral__menu button { display: flex; align-items: center; gap: 1rem; border: 2px solid transparent; border-radius: 40px; background: none; color: #d2d0db; font-size: 1.4rem; padding: 1rem 1.2rem; text-align: left; }
+.lateral__menu button:hover { color: #fff; background: #111a2b; }
+.lateral__menu button[aria-current] { color: #fff; font-weight: 600; border-color: #00d9ff; box-shadow: 0 0 14px rgba(0, 217, 255, 0.45); }
+.lateral__menu svg { width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
+
+/* Caixas */
+.conteudo { padding: 2rem 1.5rem 3rem; min-width: 0; }
+.quadro { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.caixa { background: #fff; border: 1px solid #dde1ea; border-radius: 12px; box-shadow: 0 4px 14px rgba(27, 7, 96, 0.06); overflow: hidden; min-width: 0; }
+.dash .caixa__titulo { background: #e4e7ee; padding: 1.2rem 1.6rem; }
+.caixa__corpo { padding: 1.6rem; }
+.dash .destaque { color: #1b0760; font-size: 2.4rem; font-weight: 700; }
+.menor { font-size: 1.2rem; }
+
+.caixa--plano { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; padding: 1.6rem; }
+.plano__itens { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); align-content: center; gap: 0.5rem 1.5rem; flex: 1 1 28rem; margin: 0; color: #1b0760; }
+.plano__itens li::before { content: '\2713'; color: #00b8d9; font-weight: 700; margin-right: 0.8rem; }
+.dash .btn { margin: 0; padding: 1.1rem 2.5rem; font-size: 1.3rem; }
+.dash .plano__resumo .btn { display: inline-block; margin-top: 1rem; }
+
+.caixa--geral { padding: 1.6rem; align-self: stretch; }
+.barra { height: 8px; border-radius: 8px; background: #e4e7ee; margin: 1.5rem 0 1rem; overflow: hidden; }
+.barra span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #2584ff, #00d9ff); transition: width 0.5s; }
+
+/* Sites */
+.dash .sites__item { display: flex; gap: 1.2rem; }
+.sites__item > div { min-width: 0; }
+.sites__icone { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 36px; height: 36px; border: 2px solid #1b0760; border-radius: 8px; color: #2584ff; font: 700 1.2rem monospace; }
+.dash .sites__item a { color: #1b0760; overflow-wrap: anywhere; margin-bottom: 0.5rem; }
+.dash .sites__detalhe { font-size: 1.2rem; }
+.dash .status { padding: 0.2rem 1.4rem; font-size: 1.3rem; }
+.status--aberta { background: #dceaff; }
+.verificar { width: 100%; border: 2px solid #2584ff; border-radius: 40px; background: #fff; color: #1567d6; font-weight: 700; font-size: 1.3rem; padding: 1rem; text-transform: uppercase; }
+.verificar:hover { background: #eef6ff; }
+
+/* Dados e abas */
+.abas { display: flex; flex-wrap: wrap; border-bottom: 1px solid #e4e7ee; }
+.abas button { flex: 1; border: 0; border-bottom: 3px solid transparent; background: none; color: #4a4568; font-size: 1.4rem; padding: 1.1rem 0.8rem; }
+.abas button[aria-pressed='true'] { color: #1567d6; border-bottom-color: #00b8d9; font-weight: 600; }
+.campos { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.2rem 1.5rem; align-items: end; }
+.campos label { display: block; color: #1b0760; font-weight: 600; margin-bottom: 0.3rem; }
+.dash .campos .input { width: 100%; padding: 0.9rem 1.5rem; font-size: 1.4rem; background: #f6f7fa; }
+.dash .campos .input:focus { background: #fff; border-color: #2584ff; box-shadow: 0 0 0 3px rgba(37, 132, 255, 0.3); }
+.dash .campos .input[readonly] { color: #6f6985; background: #e9ebf0; }
+.dash .foto-acoes label { margin: 0; color: #1567d6; text-decoration: underline; cursor: pointer; font-weight: 400; }
+
+/* Financeiro */
+.fatura { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem; }
+.fatura__acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; }
+.dash #historico ul { margin: 0; }
+#historico li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 0; border-top: 1px solid #eef0f4; }
+
+.carregando .quadro { visibility: hidden; }
+
+@media screen and (min-width: 600px) {
+  .campos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media screen and (min-width: 900px) {
+  .dash { grid-template-columns: 230px minmax(0, 1fr); }
+  .lateral { position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+  .lateral__menu { grid-template-columns: 1fr; margin-top: 3rem; }
+  .conteudo { padding: 2rem 2.5rem 3rem; }
+}
+
+@media screen and (min-width: 1100px) {
+  .quadro { grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: auto auto 1fr; }
+  .caixa--plano { grid-area: 1 / 1 / 2 / 10; }
+  .caixa--geral { grid-area: 1 / 10 / 2 / 13; }
+  .caixa--sites { grid-area: 2 / 1 / 4 / 6; align-self: stretch; }
+  .caixa--dados { grid-area: 2 / 6 / 3 / 13; }
+  .caixa--financeiro { grid-area: 3 / 6 / 4 / 13; }
+}
+
+/* Cada item do menu mostra só as suas caixas */
+.dash[data-visao='sites'] .caixa:not(.caixa--sites, .caixa--geral),
+.dash[data-visao='plano'] .caixa:not(.caixa--plano, .caixa--financeiro),
+.dash[data-visao='config'] .caixa:not(.caixa--dados) { display: none; }
+.dash:not([data-visao='geral']) .quadro { display: flex; flex-direction: column; align-items: stretch; max-width: 80rem; }
