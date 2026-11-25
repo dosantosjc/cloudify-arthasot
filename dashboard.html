@@ -26,7 +26,7 @@
     <div class="block block--dark block--skewed-left painel-capa">
       <div class="container">
         <h1 id="saudacao">Carregando...</h1>
-        <p>Acompanhe seu plano, seu site e seus dados.</p>
+        <p>Acompanhe seu plano, seus sites e seus dados.</p>
       </div>
     </div>
     <main class="container painel" id="painel">
@@ -41,11 +41,10 @@
         </div>
       </section>
       <section class="card card--secondary">
-        <header class="card__header"><h2>Meu site</h2></header>
+        <header class="card__header"><h2>Meus sites</h2></header>
         <div class="card__body">
-          <p><span class="status" id="site-status" role="status">Verificando...</span></p>
-          <p><a id="site-link" target="_blank" rel="noopener"></a></p>
-          <p id="site-detalhe"></p>
+          <ul class="list sites" id="sites"></ul>
+          <p id="sites-aviso" class="aviso" role="status"></p>
           <button type="button" class="btn btn--outline btn--block" id="site-atualizar">Verificar novamente</button>
         </div>
       </section>

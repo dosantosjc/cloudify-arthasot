@@ -37,3 +37,10 @@
 .status--offline { background: #c62800; color: #fff; }
 
 .carregando .painel { visibility: hidden; }
+
+.sites { margin: 0; }
+.sites__item { padding: 0 0 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; }
+.sites__item a { display: block; margin-bottom: 1rem; font-weight: 600; }
+.sites__detalhe { margin: 0.5rem 0 0; font-size: 1.5rem; }
+.sites__detalhe:empty { margin: 0; }
+.status--invalido { background: #ffd666; }

@@ -36,29 +36,67 @@ function mostrarPlano(cliente) {
   el('plano-link').hidden = true;
 }
 
-async function verificarSite() {
-  const selo = el('site-status');
+function criar(tag, classe, texto) {
+  const elemento = document.createElement(tag);
+  if (classe) elemento.className = classe;
+  if (texto) elemento.textContent = texto;
+  return elemento;
+}
+
+const STATUS = { online: 'Online', problema: 'Com problema', offline: 'Fora do ar', invalido: 'Endereço inválido' };
+let linhas = new Map(); // id do site -> elementos na tela
+
+async function carregarSites() {
+  const { data, error } = await banco.from('sites').select('id, url').order('id');
+  if (error) return avisar('sites-aviso', 'Não foi possível carregar seus sites.', 'erro');
+  if (!data.length) {
+    el('site-atualizar').hidden = true;
+    return avisar('sites-aviso', 'Seus sites aparecerão aqui quando forem vinculados à conta.', 'info');
+  }
+  linhas = new Map(
+    data.map((site) => {
+      const item = criar('li', 'sites__item');
+      const link = criar('a', '', site.url);
+      link.href = site.url;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      const selo = criar('span', 'status');
+      const detalhe = criar('p', 'sites__detalhe');
+      item.append(link, selo, detalhe);
+      return [site.id, { item, selo, detalhe }];
+    })
+  );
+  el('sites').replaceChildren(...[...linhas.values()].map((linha) => linha.item));
+  el('site-atualizar').addEventListener('click', verificarSites);
+  verificarSites();
+}
+
+function pintar(linha, texto, status, detalhe) {
+  linha.selo.textContent = texto;
+  linha.selo.className = status ? `status status--${status}` : 'status';
+  linha.detalhe.textContent = detalhe || '';
+}
+
+async function verificarSites() {
   const botao = el('site-atualizar');
   botao.disabled = true;
-  selo.textContent = 'Verificando...';
-  selo.className = 'status';
+  linhas.forEach((linha) => pintar(linha, 'Verificando...'));
   try {
     const { data } = await banco.auth.getSession();
     const resposta = await fetch('/api/status', {
       headers: { authorization: `Bearer ${data.session.access_token}` },
     });
     if (!resposta.ok) throw new Error('falha');
-    const site = await resposta.json();
-    const textos = { online: 'Online', problema: 'Com problema', offline: 'Fora do ar', 'sem-site': 'Nenhum site vinculado' };
-    selo.textContent = textos[site.status];
-    selo.className = `status status--${site.status}`;
-    el('site-detalhe').textContent = site.status === 'sem-site'
-      ? 'Seu site aparecerá aqui quando for vinculado à conta.'
-      : `Verificado às ${new Date().toLocaleTimeString('pt-BR')}` +
-        (site.codigo ? ` · resposta ${site.codigo} em ${site.tempo} ms` : '');
+    const { sites } = await resposta.json();
+    const hora = new Date().toLocaleTimeString('pt-BR');
+    linhas.forEach((linha, id) => {
+      const site = sites.find((s) => s.id === id);
+      if (!site) return pintar(linha, 'Não verificado');
+      const extra = site.codigo ? ` · resposta ${site.codigo} em ${site.tempo} ms` : '';
+      pintar(linha, STATUS[site.status], site.status, `Verificado às ${hora}${extra}`);
+    });
   } catch (erro) {
-    selo.textContent = 'Não foi possível verificar';
-    el('site-detalhe').textContent = '';
+    linhas.forEach((linha) => pintar(linha, 'Não foi possível verificar'));
   }
   botao.disabled = false;
 }
@@ -80,12 +118,7 @@ async function iniciar() {
   ['nome', 'telefone', 'empresa'].forEach((campo) => (el(campo).value = cliente[campo]));
   el('email').value = usuario.email;
   mostrarPlano(cliente);
-  if (cliente.site_url) {
-    el('site-link').textContent = cliente.site_url;
-    el('site-link').href = cliente.site_url;
-  }
-  verificarSite();
-  el('site-atualizar').addEventListener('click', verificarSite);
+  carregarSites();
 
   el('dados-form').addEventListener('submit', async (evento) => {
     evento.preventDefault();
