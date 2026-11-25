@@ -19,6 +19,7 @@ function traduzir(erro) {
     user_already_exists: 'Não foi possível criar a conta. Se você já tem uma, use Entrar.',
     weak_password: 'Escolha uma senha mais forte.',
     over_email_send_rate_limit: 'Muitos e-mails enviados. Aguarde alguns minutos.',
+    captcha_failed: 'A verificação de segurança falhou. Tente novamente.',
     over_request_rate_limit: 'Muitas tentativas. Aguarde alguns minutos.',
   };
   return mensagens[erro.code] || 'Não foi possível concluir. Tente novamente.';
@@ -40,19 +41,22 @@ if (ehCadastro) {
 
 formulario.addEventListener('submit', async (evento) => {
   evento.preventDefault();
+  if (!captcha.token()) return avisar('Conclua a verificação de segurança.', 'erro');
   botao.disabled = true;
   avisar('Aguarde...', 'info');
+  const captchaToken = captcha.token();
   const dados = { email: valor('email'), password: valor('senha') };
   try {
     const { data, error } = ehCadastro
       ? await banco.auth.signUp({
           ...dados,
           options: {
+            captchaToken,
             data: { nome: valor('nome').trim() },
             emailRedirectTo: `${window.location.origin}/dashboard`,
           },
         })
-      : await banco.auth.signInWithPassword(dados);
+      : await banco.auth.signInWithPassword({ ...dados, options: { captchaToken } });
     if (error) throw error;
     if (data.session) return window.location.assign('/dashboard');
     formulario.reset();
@@ -60,5 +64,6 @@ formulario.addEventListener('submit', async (evento) => {
   } catch (erro) {
     avisar(traduzir(erro), 'erro');
   }
+  captcha.reiniciar();
   botao.disabled = false;
 });

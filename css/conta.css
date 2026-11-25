@@ -57,3 +57,12 @@
 .foto-acoes input { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .foto-acoes input:focus-visible + label { outline: 3px solid #00d9ff; }
 .foto-acoes button { border: 0; background: none; padding: 0; color: #c62800; font-weight: 600; cursor: pointer; }
+
+/* Captcha e recuperação de senha */
+.captcha { margin-top: 2rem; min-height: 65px; text-align: center; }
+.esqueci { margin: 1rem 0 0; text-align: right; font-size: 1.5rem; }
+.login__card a { color: #ff3400; font-weight: 600; }
+.login__card a.btn { color: #fff; }
+@media screen and (max-width: 480px) {
+  .login .login__card { padding-left: 2rem; padding-right: 2rem; }
+}

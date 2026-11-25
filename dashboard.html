@@ -77,6 +77,17 @@
         </div>
       </section>
       <section class="card card--secondary">
+        <header class="card__header"><h2>Alterar e-mail</h2></header>
+        <div class="card__body">
+          <form id="email-form" method="post">
+            <label for="novo-email">Novo e-mail</label>
+            <input class="input" id="novo-email" type="email" autocomplete="email" required />
+            <button type="submit" class="btn btn--accent btn--block">Alterar e-mail</button>
+            <p id="email-aviso" class="aviso" role="status"></p>
+          </form>
+        </div>
+      </section>
+      <section class="card card--secondary">
         <header class="card__header"><h2>Alterar senha</h2></header>
         <div class="card__body">
           <form id="senha-form" method="post">

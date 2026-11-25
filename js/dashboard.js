@@ -1,3 +1,5 @@
+// Lê a resposta dos links de e-mail antes que o endereço seja limpo
+const linkRecebido = new URLSearchParams(window.location.hash.slice(1));
 const banco = window.supabase.createClient(CLOUDIFY.supabaseUrl, CLOUDIFY.supabaseKey);
 
 const PLANOS = {
@@ -165,6 +167,39 @@ function prepararFoto(id, cliente) {
   mostrar();
 }
 
+function prepararEmail(usuario) {
+  if (linkRecebido.get('error')) {
+    avisar('email-aviso', 'O link usado é inválido ou expirou. Peça a troca novamente.', 'erro');
+  } else if (linkRecebido.get('message')) {
+    avisar('email-aviso', 'Primeira confirmação recebida. Agora abra o link enviado ao outro e-mail.', 'sucesso');
+  } else if (usuario.new_email) {
+    avisar('email-aviso', `Troca para ${usuario.new_email} aguardando confirmação.`, 'info');
+  }
+
+  el('email-form').addEventListener('submit', async (evento) => {
+    evento.preventDefault();
+    const novo = el('novo-email').value.trim().toLowerCase();
+    if (novo === usuario.email) return avisar('email-aviso', 'Esse já é o seu e-mail.', 'erro');
+    const botao = evento.target.querySelector('button');
+    botao.disabled = true;
+    avisar('email-aviso', 'Enviando...', 'info');
+    const { error } = await banco.auth.updateUser(
+      { email: novo },
+      { emailRedirectTo: `${window.location.origin}/dashboard` }
+    );
+    botao.disabled = false;
+    if (error) {
+      const textos = {
+        email_exists: 'Não é possível usar esse e-mail.',
+        over_email_send_rate_limit: 'Muitos e-mails enviados. Aguarde alguns minutos.',
+      };
+      return avisar('email-aviso', textos[error.code] || 'Não foi possível alterar o e-mail.', 'erro');
+    }
+    evento.target.reset();
+    avisar('email-aviso', 'Enviamos a confirmação por e-mail. Abra os links recebidos no e-mail atual e no novo.', 'sucesso');
+  });
+}
+
 async function iniciar() {
   const { data, error } = await banco.auth.getUser();
   if (error || !data.user) return window.location.replace('/login');
@@ -183,6 +218,7 @@ async function iniciar() {
   el('email').value = usuario.email;
   mostrarPlano(cliente);
   carregarSites();
+  prepararEmail(usuario);
   prepararFoto(usuario.id, cliente);
 
   el('dados-form').addEventListener('submit', async (evento) => {

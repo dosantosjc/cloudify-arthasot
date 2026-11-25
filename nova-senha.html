@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Nova senha - Cloudify</title>
+    <link rel="icon" href="/images/favicon-sm.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/conta.css" />
+  </head>
+
+  <body>
+    <main class="login">
+      <a class="login__brand" href="https://www.arthasot.com.br/" aria-label="Cloudify"
+        ><img src="/images/logo.svg" alt=""
+      /></a>
+
+      <div class="card login__card">
+        <h1 class="login__title">Nova senha</h1>
+        <p class="login__text">Escolha uma senha com pelo menos 8 caracteres.</p>
+
+        <form id="nova-senha-form" method="post">
+          <label class="login__label" for="senha">Nova senha</label>
+          <input class="input" id="senha" type="password" autocomplete="new-password" minlength="8" required />
+
+          <label class="login__label" for="confirmar">Confirmar nova senha</label>
+          <input class="input" id="confirmar" type="password" autocomplete="new-password" minlength="8" required />
+
+          <button type="submit" class="btn btn--accent btn--block" disabled>Salvar nova senha</button>
+          <p id="aviso" class="aviso" role="status"></p>
+        </form>
+
+        <div id="link-invalido" hidden>
+          <p class="login__text">Este link é inválido ou expirou.</p>
+          <a class="btn btn--accent btn--block" href="/recuperar-senha">Pedir novo link</a>
+        </div>
+      </div>
+
+      <a class="login__back" href="https://www.arthasot.com.br/">&larr; Voltar para o site</a>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/senha.js"></script>
+  </body>
+</html>

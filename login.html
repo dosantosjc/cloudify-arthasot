@@ -33,6 +33,9 @@
           <label class="login__label" for="senha">Senha</label>
           <input class="input" id="senha" type="password" autocomplete="current-password" required />
 
+          <p class="esqueci"><a href="/recuperar-senha">Esqueceu sua senha?</a></p>
+          <div id="captcha" class="captcha"></div>
+
           <button type="submit" class="btn btn--accent btn--block">Entrar</button>
           <p id="aviso" class="aviso" role="status"></p>
         </form>
@@ -43,7 +46,9 @@
       <a class="login__back" href="https://www.arthasot.com.br/">&larr; Voltar para o site</a>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
     <script src="/js/config.js"></script>
+    <script src="/js/captcha.js"></script>
     <script src="/js/auth.js"></script>
   </body>
 </html>
