@@ -13,6 +13,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/conta.css" />
   </head>
 
   <body>
@@ -25,9 +26,7 @@
         <h1 class="login__title">Cadastre-se</h1>
         <p class="login__text">Crie sua conta Cloudify.</p>
 
-        <!-- Demonstração: nenhuma conta é criada. Os campos não têm "name",
-             então nada é enviado. Ao enviar, o visitante vai para o site. -->
-        <form id="login-form" action="https://www.arthasot.com.br/" method="get">
+        <form id="cadastro-form" method="post">
           <label class="login__label" for="nome">Nome</label>
           <input class="input" id="nome" type="text" autocomplete="name" required />
 
@@ -41,6 +40,7 @@
           <input class="input" id="confirmar" type="password" autocomplete="new-password" required />
 
           <button type="submit" class="btn btn--accent btn--block">Criar conta</button>
+          <p id="aviso" class="aviso" role="status"></p>
         </form>
 
         <p class="login__switch">Já tem uma conta? <a href="/login">Entrar</a></p>
@@ -48,21 +48,8 @@
 
       <a class="login__back" href="https://www.arthasot.com.br/">&larr; Voltar para o site</a>
     </main>
-    <script>
-      var senha = document.getElementById('senha');
-      var confirmar = document.getElementById('confirmar');
-      function conferirSenhas() {
-        confirmar.setCustomValidity(
-          confirmar.value === senha.value ? '' : 'As senhas não são iguais.'
-        );
-      }
-      senha.addEventListener('input', conferirSenhas);
-      confirmar.addEventListener('input', conferirSenhas);
-
-      document.getElementById('login-form').addEventListener('submit', function (event) {
-        event.preventDefault();
-        window.location.href = this.action;
-      });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/auth.js"></script>
   </body>
 </html>

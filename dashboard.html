@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Minha conta - Cloudify</title>
+    <link rel="icon" href="/images/favicon-sm.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/conta.css" />
+  </head>
+
+  <body class="carregando">
+    <header class="painel-topo">
+      <div class="container">
+        <a href="/" aria-label="Cloudify"><img src="/images/logo.svg" alt="" /></a>
+        <button type="button" class="btn btn--accent" id="sair">Sair</button>
+      </div>
+    </header>
+    <div class="block block--dark block--skewed-left painel-capa">
+      <div class="container">
+        <h1 id="saudacao">Carregando...</h1>
+        <p>Acompanhe seu plano, seu site e seus dados.</p>
+      </div>
+    </div>
+    <main class="container painel" id="painel">
+      <section class="card card--primary">
+        <header class="card__header"><h2>Meu plano</h2></header>
+        <div class="card__body">
+          <p class="painel__destaque" id="plano-nome">Nenhum plano ativo</p>
+          <p id="plano-preco"></p>
+          <p id="plano-desde"></p>
+          <ul class="list list--tick" id="plano-itens"></ul>
+          <a class="btn btn--accent btn--block" id="plano-link" href="/#planos">Ver planos</a>
+        </div>
+      </section>
+      <section class="card card--secondary">
+        <header class="card__header"><h2>Meu site</h2></header>
+        <div class="card__body">
+          <p><span class="status" id="site-status" role="status">Verificando...</span></p>
+          <p><a id="site-link" target="_blank" rel="noopener"></a></p>
+          <p id="site-detalhe"></p>
+          <button type="button" class="btn btn--outline btn--block" id="site-atualizar">Verificar novamente</button>
+        </div>
+      </section>
+      <section class="card card--secondary">
+        <header class="card__header"><h2>Meus dados</h2></header>
+        <div class="card__body">
+          <form id="dados-form">
+            <label for="nome">Nome</label>
+            <input class="input" id="nome" type="text" maxlength="100" autocomplete="name" required />
+            <label for="email">E-mail</label>
+            <input class="input" id="email" type="email" readonly />
+            <label for="telefone">Telefone</label>
+            <input class="input" id="telefone" type="tel" maxlength="20" autocomplete="tel" />
+            <label for="empresa">Empresa</label>
+            <input class="input" id="empresa" type="text" maxlength="100" autocomplete="organization" />
+            <button type="submit" class="btn btn--accent btn--block">Salvar dados</button>
+            <p id="dados-aviso" class="aviso" role="status"></p>
+          </form>
+        </div>
+      </section>
+      <section class="card card--secondary">
+        <header class="card__header"><h2>Alterar senha</h2></header>
+        <div class="card__body">
+          <form id="senha-form" method="post">
+            <label for="nova-senha">Nova senha</label>
+            <input class="input" id="nova-senha" type="password" minlength="8" autocomplete="new-password" required />
+            <label for="confirmar-senha">Confirmar nova senha</label>
+            <input class="input" id="confirmar-senha" type="password" minlength="8" autocomplete="new-password" required />
+            <button type="submit" class="btn btn--accent btn--block">Alterar senha</button>
+            <p id="senha-aviso" class="aviso" role="status"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/dashboard.js"></script>
+  </body>
+</html>

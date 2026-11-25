@@ -1,0 +1,39 @@
+/* Login, cadastro e painel do cliente (usa as cores de styles.css) */
+[hidden] { display: none !important; }
+
+.aviso { margin: 1.5rem 0 0; text-align: center; }
+.aviso:empty { margin: 0; }
+.aviso--erro { color: #c62800; }
+.aviso--sucesso { color: #137a3a; }
+
+.painel-topo { background: #000; padding: 1.5rem 2rem; }
+.painel-topo .container { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+.painel-topo img { width: 150px; display: block; }
+.painel-topo .btn { margin: 0; padding: 1rem 2.5rem; }
+
+.painel-capa { padding-top: 3rem; }
+.painel-capa h1 { margin: 0 0 1rem; font-size: 4rem; overflow-wrap: anywhere; }
+
+.painel { display: grid; gap: 3rem; padding: 4rem 2rem 6rem; }
+@media screen and (min-width: 768px) {
+  .painel { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+}
+
+.painel .card__header h2 { margin: 0; color: #fff; font-size: 2.4rem; }
+.painel .card__body { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+.painel .list--tick { margin-bottom: 0; }
+.painel__destaque { color: var(--color-headings); font-size: 3rem; font-weight: 700; margin: 0; }
+.painel label { display: block; color: var(--color-headings); font-weight: 600; margin: 1.5rem 0 0.5rem; }
+.painel .input { width: 100%; }
+.painel .input:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(37, 132, 255, 0.3); }
+.painel .input[readonly] { background: #f5f5f7; }
+.painel .btn { margin: 2rem 0 0; }
+.painel a:not(.btn) { color: var(--color-primary); overflow-wrap: anywhere; }
+.btn:disabled { opacity: 0.6; cursor: wait; }
+
+.status { display: inline-block; border-radius: 20px; padding: 0.5rem 2rem; background: #eee; color: var(--color-headings); font-weight: 600; }
+.status--online { background: #137a3a; color: #fff; }
+.status--problema { background: #ffd666; }
+.status--offline { background: #c62800; color: #fff; }
+
+.carregando .painel { visibility: hidden; }
