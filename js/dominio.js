@@ -24,7 +24,7 @@ function mostrar(resultados) {
     linha.append(criar('strong', '', item.dominio));
     linha.append(criar('span', 'domain-results__status', item.aviso || TEXTOS[item.status]));
     if (item.status === 'disponivel') {
-      const link = criar('a', 'domain-results__link', 'Cadastre-se');
+      const link = criar('a', 'domain-results__link', 'Registrar agora');
       link.href = '/cadastro';
       linha.append(link);
     }
