@@ -29,6 +29,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/conta.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
 
@@ -46,7 +47,7 @@
           <li class="nav__item"><a href="#vps">VPS</a></li>
           <li class="nav__item"><a href="#dominios">Domínios</a></li>
           <li class="nav__item"><a href="#planos">Planos</a></li>
-          <li class="nav__item nav__item--login"><a href="/login">Entrar</a></li>
+          <li class="nav__item nav__item--login"><span class="avatar" hidden></span><a href="/login">Entrar</a></li>
         </ul>
       </nav>
     </header>
@@ -501,6 +502,10 @@
         </div>
       </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/avatar.js"></script>
+    <script src="js/sessao.js"></script>
     <script src="js/main.js"></script>
     <script src="js/dominio.js"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

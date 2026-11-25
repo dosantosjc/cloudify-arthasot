@@ -25,8 +25,13 @@
     </header>
     <div class="block block--dark block--skewed-left painel-capa">
       <div class="container">
-        <h1 id="saudacao">Carregando...</h1>
-        <p>Acompanhe seu plano, seus sites e seus dados.</p>
+        <div class="perfil">
+          <span class="avatar avatar--grande" id="avatar" hidden></span>
+          <div>
+            <h1 id="saudacao">Carregando...</h1>
+            <p>Acompanhe seu plano, seus sites e seus dados.</p>
+          </div>
+        </div>
       </div>
     </div>
     <main class="container painel" id="painel">
@@ -51,6 +56,12 @@
       <section class="card card--secondary">
         <header class="card__header"><h2>Meus dados</h2></header>
         <div class="card__body">
+          <div class="foto-acoes">
+            <input type="file" id="foto" accept="image/jpeg,image/png,image/webp" />
+            <label for="foto">Alterar foto de perfil</label>
+            <button type="button" id="foto-remover" hidden>Remover foto</button>
+          </div>
+          <p id="foto-aviso" class="aviso" role="status"></p>
           <form id="dados-form">
             <label for="nome">Nome</label>
             <input class="input" id="nome" type="text" maxlength="100" autocomplete="name" required />
@@ -81,6 +92,7 @@
     </main>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
     <script src="/js/config.js"></script>
+    <script src="/js/avatar.js"></script>
     <script src="/js/dashboard.js"></script>
   </body>
 </html>

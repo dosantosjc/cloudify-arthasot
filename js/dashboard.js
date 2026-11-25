@@ -101,6 +101,70 @@ async function verificarSites() {
   botao.disabled = false;
 }
 
+// Recorta o centro da imagem e reduz para 256 x 256 antes de enviar
+async function reduzirFoto(arquivo) {
+  const imagem = await createImageBitmap(arquivo);
+  const lado = Math.min(imagem.width, imagem.height);
+  const tela = document.createElement('canvas');
+  tela.width = tela.height = 256;
+  const pincel = tela.getContext('2d');
+  pincel.fillStyle = '#fff';
+  pincel.fillRect(0, 0, 256, 256);
+  pincel.drawImage(imagem, (imagem.width - lado) / 2, (imagem.height - lado) / 2, lado, lado, 0, 0, 256, 256);
+  return new Promise((resolver, rejeitar) =>
+    tela.toBlob((blob) => (blob ? resolver(blob) : rejeitar(new Error('imagem'))), 'image/jpeg', 0.85)
+  );
+}
+
+function prepararFoto(id, cliente) {
+  const caminho = `${id}/perfil.jpg`;
+  const mostrar = () => {
+    pintarAvatar(el('avatar'), banco, id, cliente);
+    el('foto-remover').hidden = !cliente.foto_atualizada;
+  };
+
+  async function gravar(valor) {
+    const { error } = await banco.from('clientes').update({ foto_atualizada: valor }).eq('id', id).select().single();
+    if (error) throw error;
+    cliente.foto_atualizada = valor;
+    mostrar();
+  }
+
+  el('foto').addEventListener('change', async (evento) => {
+    const arquivo = evento.target.files[0];
+    if (!arquivo) return;
+    evento.target.disabled = true;
+    avisar('foto-aviso', 'Enviando...', 'info');
+    try {
+      const foto = await reduzirFoto(arquivo);
+      const { error } = await banco.storage
+        .from('avatars')
+        .upload(caminho, foto, { upsert: true, contentType: 'image/jpeg' });
+      if (error) throw error;
+      await gravar(new Date().toISOString());
+      avisar('foto-aviso', 'Foto atualizada.', 'sucesso');
+    } catch (erro) {
+      avisar('foto-aviso', 'Não foi possível enviar. Use uma imagem JPG, PNG ou WebP.', 'erro');
+    }
+    evento.target.value = '';
+    evento.target.disabled = false;
+  });
+
+  el('foto-remover').addEventListener('click', async () => {
+    avisar('foto-aviso', 'Removendo...', 'info');
+    try {
+      const { error } = await banco.storage.from('avatars').remove([caminho]);
+      if (error) throw error;
+      await gravar(null);
+      avisar('foto-aviso', 'Foto removida.', 'sucesso');
+    } catch (erro) {
+      avisar('foto-aviso', 'Não foi possível remover.', 'erro');
+    }
+  });
+
+  mostrar();
+}
+
 async function iniciar() {
   const { data, error } = await banco.auth.getUser();
   if (error || !data.user) return window.location.replace('/login');
@@ -119,6 +183,7 @@ async function iniciar() {
   el('email').value = usuario.email;
   mostrarPlano(cliente);
   carregarSites();
+  prepararFoto(usuario.id, cliente);
 
   el('dados-form').addEventListener('submit', async (evento) => {
     evento.preventDefault();
@@ -131,6 +196,8 @@ async function iniciar() {
     const { error: falha } = await banco.from('clientes').update(novos).eq('id', usuario.id).select().single();
     if (falha) return avisar('dados-aviso', 'Não foi possível salvar.', 'erro');
     mostrarNome(novos.nome);
+    Object.assign(cliente, novos);
+    pintarAvatar(el('avatar'), banco, usuario.id, cliente);
     avisar('dados-aviso', 'Dados salvos.', 'sucesso');
   });
 
