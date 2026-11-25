@@ -94,3 +94,7 @@
 .dash[data-visao='plano'] .caixa:not(.caixa--plano, .caixa--financeiro),
 .dash[data-visao='config'] .caixa:not(.caixa--dados) { display: none; }
 .dash:not([data-visao='geral']) .quadro { display: flex; flex-direction: column; align-items: stretch; max-width: 80rem; }
+
+/* Ícone do próprio site */
+.sites__icone--imagem { border-color: #e4e7ee; background: #fff; padding: 4px; }
+.sites__icone img { width: 100%; height: 100%; object-fit: contain; }

@@ -73,12 +73,25 @@ async function carregarSites() {
       const texto = criar('div');
       texto.append(link, selo, detalhe);
       item.append(icone, texto);
-      return [site.id, { item, selo, detalhe }];
+      return [site.id, { item, selo, detalhe, icone }];
     })
   );
   el('sites').replaceChildren(...[...linhas.values()].map((linha) => linha.item));
   el('site-atualizar').addEventListener('click', verificarSites);
   verificarSites();
+}
+
+// Troca o desenho padrão pelo ícone do site, se a imagem carregar
+function mostrarIcone(linha, endereco) {
+  if (!endereco) return;
+  const imagem = new Image();
+  imagem.alt = '';
+  imagem.referrerPolicy = 'no-referrer';
+  imagem.onload = () => {
+    linha.icone.replaceChildren(imagem);
+    linha.icone.classList.add('sites__icone--imagem');
+  };
+  imagem.src = endereco;
 }
 
 function pintar(linha, texto, status, detalhe) {
@@ -105,6 +118,7 @@ async function verificarSites() {
       if (!site) return pintar(linha, 'Não verificado');
       const extra = site.codigo ? ` · resposta ${site.codigo} em ${site.tempo} ms` : '';
       pintar(linha, STATUS[site.status], site.status, `Verificado às ${hora}${extra}`);
+      mostrarIcone(linha, site.icone);
     });
     const online = sites.filter((s) => s.status === 'online' && linhas.has(s.id)).length;
     const frase = linhas.size === 1 ? 'site online' : 'sites online';
